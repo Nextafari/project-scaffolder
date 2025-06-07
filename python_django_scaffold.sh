@@ -30,6 +30,7 @@ echo "Creating virtual environment with Pipenv..."
 
 pipenv install 
 pipenv install django djangorestframework django-cors-headers drf-yasg djangorestframework-simplejwt
+pipenv run django-admin startproject "$PROJECT_NAME"
 
 
 # Generate Dockerfile dynamically
@@ -233,9 +234,3 @@ git commit -m "Feat: Initial project setup"
 
 
 echo "✅ Project '$PROJECT_NAME' created and initialized. 🎉"
-
-
-echo "Entering virtual environment to Create and start Django project 🚀"
-pipenv shell
-django admin startproject "$PROJECT_NAME"
-python3 manage.py runserver
