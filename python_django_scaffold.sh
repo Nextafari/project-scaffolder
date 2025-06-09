@@ -222,6 +222,7 @@ static/
 daphne_keys/
 
 todo.md
+pseudocode.md
 
 # mac
 .DS_Store
