@@ -31,6 +31,7 @@ echo "Creating virtual environment with Pipenv..."
 pipenv install 
 pipenv install django djangorestframework django-cors-headers drf-yasg djangorestframework-simplejwt
 pipenv run django-admin startproject "$PROJECT_NAME"
+pipenv run pip3 freeze > requirements.txt
 
 
 # Generate Dockerfile dynamically
