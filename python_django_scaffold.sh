@@ -65,10 +65,35 @@ version: "3.9"
 services:
   app:
     build: .
+    container_name: ${PROJECT_NAME}_app
     ports:
       - "127.0.0.1:$APP_PORT:$APP_PORT"
     volumes:
       - .:/app
+    env_file:
+      - .env
+    command: >
+      sh -c "python manage.py migrate &&
+        python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+  db:
+    image: postgres:14
+    container_name: ${PROJECT_NAME}_db
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: always
 EOF
 
 
