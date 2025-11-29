@@ -94,6 +94,9 @@ services:
       timeout: 5s
       retries: 10
     restart: always
+
+volumes:
+  db-data:
 EOF
 
 
