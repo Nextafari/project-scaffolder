@@ -55,6 +55,8 @@ WORKDIR /app
 
 COPY requirements.txt /app/requirements.txt
 RUN $INSTALL_COMMAND
+
+COPY . /app
 EOF
 
 
